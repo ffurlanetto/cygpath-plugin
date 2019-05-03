@@ -111,6 +111,9 @@ public class CygpathLauncherDecorator extends LauncherDecorator {
      */
     private static class GetCygpathTask implements Callable<String,IOException> {
         private File getCygwinRoot() throws IOException {
+            if (System.getProperty("CYGWIN_HOME") != null) {
+                return new File(System.getProperty("CYGWIN_HOME"));
+            }
             JnaException err=null;
             for (String prefix : new String[]{"SOFTWARE\\Wow6432Node\\","SOFTWARE\\"}) {
                 try {// Cygwin 1.7
