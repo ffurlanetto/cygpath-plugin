@@ -114,6 +114,9 @@ public class CygpathLauncherDecorator extends LauncherDecorator {
             if (System.getProperty("CYGWIN_HOME") != null) {
                 return new File(System.getProperty("CYGWIN_HOME"));
             }
+            if (System.getenv("CYGWIN_HOME") != null) {
+                return new File(System.getenv("CYGWIN_HOME"));
+            }
             JnaException err=null;
             for (String prefix : new String[]{"SOFTWARE\\Wow6432Node\\","SOFTWARE\\"}) {
                 try {// Cygwin 1.7
